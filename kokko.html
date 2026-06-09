@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DUNAMA ISIYAKU GLOBAL VENTURE - Electronics, POS Machines & Solar Solutions in Geidam, Yobe State. Quality products, expert installation.">
+    <meta name="keywords" content="electronics, POS, solar panels, inverters, batteries, Geidam, Yobe, Nigeria, DUNAMA ISIYAKU">
+    <meta name="author" content="DUNAMA ISIYAKU GLOBAL VENTURE">
+    <title>DUNAMA ISIYAKU GLOBAL VENTURE | Electronics · POS · Solar</title>
+    <!-- Swiper CSS for product slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #0a1929;
+            --electric-blue: #1a73e8;
+            --accent-orange: #f4811f;
+            --vibrant-orange: #ff6d00;
+            --white: #ffffff;
+            --light-bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--deep-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid var(--accent-orange);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 25, 41, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 25, 41, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .logo-icon {
+            background: var(--accent-orange);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 0 20px rgba(244, 129, 31, 0.5);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .nav-cta {
+            background: var(--accent-orange) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(244, 129, 31, 0.3);
+        }
+        .nav-cta:hover {
+            background: #e07314 !important;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Hero with video background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: #0a1929;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.35;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 25, 41, 0.7) 0%, rgba(10, 25, 41, 0.9) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            padding: 0 24px;
+            animation: fadeUp 1s ease;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+        .hero .slogan {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 0.8s ease 0.5s both;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+        .btn-primary {
+            background: var(--accent-orange);
+            color: white;
+            box-shadow: 0 8px 24px rgba(244, 129, 31, 0.4);
+        }
+        .btn-primary:hover {
+            background: #e07314;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(244, 129, 31, 0.5);
+        }
+        .btn-outline {
+            border-color: white;
+            color: white;
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--deep-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 24px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            display: inline-block;
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--electric-blue);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Product grid (store-like) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-orange);
+        }
+        .product-img {
+            height: 210px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent-orange);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--deep-blue);
+        }
+        .product-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .product-price {
+            font-weight: 700;
+            color: var(--accent-orange);
+            font-size: 1.1rem;
+        }
+
+        /* Swiper carousel for featured */
+        .swiper {
+            width: 100%;
+            padding: 20px 0 40px;
+        }
+        .swiper-slide {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .swiper-slide .slide-caption {
+            padding: 20px;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent-orange);
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        .stars {
+            color: #f4b400;
+            margin-bottom: 12px;
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .client {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .client-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Contact form */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-card {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .contact-card i {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            width: 40px;
+            text-align: center;
+        }
+        .contact-form {
+            background: white;
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--accent-orange);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-orange);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(244, 129, 31, 0.1);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-submit:hover {
+            background: #e07314;
+            box-shadow: 0 8px 24px rgba(244, 129, 31, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-blue);
+            color: #cbd5e1;
+            padding: 60px 24px 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color var(--transition);
+        }
+        .footer-col a:hover {
+            color: var(--accent-orange);
+        }
+        .social-links a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            color: white;
+            transition: var(--transition);
+        }
+        .social-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* WhatsApp float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 260px;
+                height: calc(100vh - 70px);
+                background: var(--deep-blue);
+                flex-direction: column;
+                padding: 24px;
+                gap: 12px;
+                transition: right var(--transition);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                <span>DUNAMA ISIYAKU<br><small style="font-size:0.65rem;">GLOBAL VENTURE</small></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero with video background -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-circuit-board-close-up-2349-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">⚡ Trusted Electronics Dealer</div>
+            <h1>Power Your World with Quality Electronics & Solar</h1>
+            <p class="slogan">Your Trusted Dealer in Electronics, POS & Solar Solutions – Geidam Main Market, Yobe State</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Contact Us</a>
+                <a href="#products" class="btn btn-outline"><i class="fas fa-boxes"></i> View Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section with Swiper -->
+    <section class="section" id="products" style="background: #f8fafc;">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Our Products</span>
+                <h2>Featured Categories</h2>
+                <p>Explore our wide range of genuine electronics, POS machines, and solar equipment.</p>
+            </div>
+            <!-- Swiper -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=400&q=80" alt="Electronics"><div class="slide-caption">Electronics</div></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80" alt="POS Machines"><div class="slide-caption">POS Machines</div></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80" alt="Solar Panels"><div class="slide-caption">Solar Panels</div></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=80" alt="Inverters"><div class="slide-caption">Inverters</div></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1620288627223-53302f4e8c74?w=400&q=80" alt="Batteries"><div class="slide-caption">Batteries</div></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80" alt="Accessories"><div class="slide-caption">Accessories</div></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Detailed product grid -->
+            <div class="products-grid" style="margin-top: 40px;">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=400&q=80');">
+                        <span class="product-badge">Popular</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart Electronics</h3>
+                        <p>TVs, sound systems, smartphones, home appliances</p>
+                        <div class="product-price">From ₦25,000</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80');">
+                        <span class="product-badge">Business</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>POS Terminals</h3>
+                        <p>Reliable payment machines for your business</p>
+                        <div class="product-price">Request Quote</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80');">
+                        <span class="product-badge">Energy</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Solar Panels</h3>
+                        <p>High-efficiency mono & poly panels</p>
+                        <div class="product-price">From ₦45,000</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1620288627223-53302f4e8c74?w=400&q=80');">
+                        <span class="product-badge">Backup</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Inverters & Batteries</h3>
+                        <p>Pure sine wave inverters, tubular & lithium batteries</p>
+                        <div class="product-price">From ₦60,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">What We Do</span>
+                <h2>Professional Installation & Support</h2>
+                <p>We don’t just sell products – we provide complete solutions with expert setup.</p>
+            </div>
+            <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="product-card" style="text-align: center; padding: 30px 20px;">
+                    <i class="fas fa-solar-panel" style="font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 16px;"></i>
+                    <h3>Solar Installation</h3>
+                    <p>Full setup for homes & offices</p>
+                </div>
+                <div class="product-card" style="text-align: center; padding: 30px 20px;">
+                    <i class="fas fa-plug" style="font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 16px;"></i>
+                    <h3>Electrical Wiring</h3>
+                    <p>Safe, standard electrical works</p>
+                </div>
+                <div class="product-card" style="text-align: center; padding: 30px 20px;">
+                    <i class="fas fa-credit-card" style="font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 16px;"></i>
+                    <h3>POS Setup</h3>
+                    <p>Configuration & merchant training</p>
+                </div>
+                <div class="product-card" style="text-align: center; padding: 30px 20px;">
+                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 16px;"></i>
+                    <h3>After-Sales Support</h3>
+                    <p>Technical assistance & warranty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" id="testimonials" style="background: #f8fafc;">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Testimonials</span>
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">"DUNAMA ISIYAKU installed my solar system perfectly. No more power outages for my shop. Highly recommended!"</p>
+                    <div class="client"><div class="client-avatar">AA</div><strong>Ahmed A.</strong></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">"The POS machine I bought works flawlessly. Great support from the team anytime I call."</p>
+                    <div class="client"><div class="client-avatar">FM</div><strong>Fatima M.</strong></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">"Genuine products at fair prices. Best electronics dealer in Geidam Main Market."</p>
+                    <div class="client"><div class="client-avatar">IB</div><strong>Ibrahim B.</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Get In Touch</span>
+                <h2>Contact Us Today</h2>
+                <p>Reach out for inquiries, pricing, or free consultation.</p>
+            </div>
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-card"><i class="fas fa-map-marker-alt"></i><div><strong>Address</strong><br>Geidam Main Market, Yobe State, Nigeria</div></div>
+                    <div class="contact-card"><i class="fas fa-phone-alt"></i><div><strong>Phone</strong><br>08026597807, 09026484665, 09077814365</div></div>
+                    <div class="contact-card"><i class="fas fa-envelope"></i><div><strong>Email</strong><br>dunamaisyaku@gmail.com</div></div>
+                    <div class="contact-card"><i class="fas fa-clock"></i><div><strong>Hours</strong><br>Mon-Sat: 8AM-6PM</div></div>
+                </div>
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 20px;">Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group"><input type="text" placeholder="Full Name" required></div>
+                        <div class="form-group"><input type="email" placeholder="Email Address" required></div>
+                        <div class="form-group"><input type="tel" placeholder="Phone Number"></div>
+                        <div class="form-group"><textarea rows="4" placeholder="Your Message" required></textarea></div>
+                        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Map -->
+            <div style="margin-top: 40px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.5!2d11.9329!3d12.8964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1105b3e8c8e8e8e7%3A0x1a2b3c4d5e6f7a8b!2sGeidam%20Main%20Market!5e0!3m2!1sen!2sng!4v1700000000000" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>DUNAMA ISIYAKU GLOBAL VENTURE</h4>
+                <p>Quality electronics, POS & solar solutions in Geidam, Yobe State. Trusted by many.</p>
+                <div class="social-links" style="margin-top: 16px;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <a href="#">Electronics</a>
+                <a href="#">POS Machines</a>
+                <a href="#">Solar Panels</a>
+                <a href="#">Inverters & Batteries</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>📞 08026597807</p>
+                <p>📧 dunamaisyaku@gmail.com</p>
+                <p>📍 Geidam Main Market, Yobe State</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 DUNAMA ISIYAKU GLOBAL VENTURE. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/2348026597807?text=Hello%20DUNAMA%20ISIYAKU%20GLOBAL%20VENTURE!%20I%20need%20your%20products." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            document.getElementById('preloader').classList.add('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                968: { slidesPerView: 3 },
+                1200: { slidesPerView: 4 }
+            }
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your message has been received. We will get back to you shortly.');
+            this.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
